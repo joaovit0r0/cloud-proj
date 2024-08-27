@@ -9,7 +9,10 @@ const pool = new Pool({
     host: 'postgres.cxyoeu8woxmh.us-east-2.rds.amazonaws.com',  // Exemplo: mydb.xxxxx.us-west-2.rds.amazonaws.com
     database: 'postgres',
     password: 'postgres',
-    port: 5432,  // Porta padrão para PostgreSQL
+    port: 5432,
+    ssl: {
+        rejectUnauthorized: false, // isso permite SSL sem verificação do certificado, útil para testes
+      }
 });
 
 // Testando a Conexão
