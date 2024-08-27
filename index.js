@@ -16,14 +16,14 @@ const pool = new Pool({
 
 
 
-app.get("/", (req, res) => {
+app.get("/", (req, response) => {
     pool.query('SELECT NOW()', (err, res) => {
         if (err) {
             console.error('Erro ao conectar ao banco de dados:', err);
-            res.json({ error: "Deu ruim" });
+            response.json({ error: "Deu ruim" });
         } else {
             console.log('Conexão bem-sucedida:', res.rows);
-            res.json({ success: res.rows });
+            response.json({ success: res.rows });
         }
         pool.end();
     });
