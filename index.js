@@ -15,11 +15,25 @@ const pool = new Pool({
       }
 });
 
-pool.on("connect", client => {
-    client
-      .query("CREATE TABLE IF NOT EXISTS clients( id SERIAL PRIMARY KEY, nome VARCHAR(255) NOT NULL, cpf CHAR(11), born_date DATE NOT NULL, email VARCHAR(255) NOT NULL )")
-      .catch(err => console.log(err));
-  })
+const deleteTable = async () => {
+    const tableName = 'clients'; // Nome da tabela que você deseja deletar
+    try {
+      const result = await pool.query(`DROP TABLE IF EXISTS ${tableName}`);
+      console.log(`Tabela "${tableName}" deletada com sucesso!`);
+    } catch (err) {
+      console.error(`Erro ao deletar a tabela: ${err.message}`);
+    } finally {
+      pool.end();
+    }
+  };
+  
+  deleteTable();
+
+// pool.on("connect", client => {
+//     client
+//       .query("CREATE TABLE IF NOT EXISTS clients( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, cpf CHAR(11), born_date DATE NOT NULL, email VARCHAR(255) NOT NULL )")
+//       .catch(err => console.log(err));
+//   })
 
 // Rota para listar todos os clientes
 app.get('/clients', async (req, res) => {
