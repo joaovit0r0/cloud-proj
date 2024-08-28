@@ -17,7 +17,7 @@ const pool = new Pool({
 
 pool.on("connect", client => {
     client
-      .query("CREATE TABLE IF NOT EXISTS todos( id SERIAL PRIMARY KEY, nome VARCHAR(255) NOT NULL, cpf CHAR(11), born_date DATE NOT NULL, email VARCHAR(255) NOT NULL )")
+      .query("CREATE TABLE IF NOT EXISTS clients( id SERIAL PRIMARY KEY, nome VARCHAR(255) NOT NULL, cpf CHAR(11), born_date DATE NOT NULL, email VARCHAR(255) NOT NULL )")
       .catch(err => console.log(err));
   })
 
