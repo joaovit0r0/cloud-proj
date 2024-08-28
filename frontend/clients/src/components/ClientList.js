@@ -10,7 +10,7 @@ const ClientList = ({ onClientSelected }) => {
 
   const fetchClients = async () => {
     try {
-      const response = await axios.get('http://18.191.176.148:3000/clients');
+      const response = await axios.get('http://18.191.176.148:5000/clients');
       setClients(response.data);
     } catch (error) {
       console.error('Erro ao buscar clientes:', error);
@@ -19,7 +19,7 @@ const ClientList = ({ onClientSelected }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://18.191.176.148:3000/clients/${id}`);
+      await axios.delete(`http://18.191.176.148:5000/clients/${id}`);
       fetchClients();
     } catch (error) {
       console.error('Erro ao deletar cliente:', error);
